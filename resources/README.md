@@ -1,0 +1,1 @@
+contains previous versions, a preview HTML from other project (might be useful), and SHA256 integrity-generator (assums local openssl installed and in PATH).

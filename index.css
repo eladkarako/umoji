@@ -1,0 +1,212 @@
+@charset "UTF-8";
+
+
+/* ╔═══════════╗
+   ║ normalize ║
+   ╚═══════════╝  */
+
+
+html,body{
+  height  : 100%;
+  width   : 100%;
+  margin  : 0pt;
+  padding : 0pt;
+}
+
+
+
+
+/* ╔═════════╗
+   ║ main    ║
+   ╚═════════╝  */
+
+html{
+  font-size      : 25pt;
+
+  /* a list, ordered by personal-taste.
+     missing glyths from one, get loaded by the next-in-line (and it gone on..), 
+     at the end, a non-specific fallback, to whatever fonts the user has installed.
+     this is a way to avoid the TOFU-symbol (empty square rendered due to a missing glyth).
+
+     edit: 'Courier New' removed, since it actually includes TOFU-symbol instead of just having missing glyths (it prevents letting another font fill-in those..).
+     edit: this happens a lot in-other fonts so I've later re-ordered the list to help with that.
+  */
+
+  font-family    : 'Noto Sans Mono'
+                  ,'Noto Sans'
+                  ,'Noto Emoji'
+                  ,'Noto Sans Symbols'
+                  ,'Noto Sans Symbols2'
+                  ,'IBM Plex Mono'
+                  ,'IBM Plex Sans'
+                  ,'IBM Plex Serif'
+                  ,'IBM Plex Sans Hebrew'
+                  ,'DejaVue Sans Mono'
+                  ,'JetBrains Mono'
+                  ,'Source Code Pro'
+                  ,'Segoe UI Emoji'
+                  ,'Segoe UI Symbol'
+                  ,'Miriam Mono CLM'
+                  ,'Noto Sans Hebrew'
+                  ,'Segoe UI'
+                  ,'Arial'
+                  ,monospace
+                  ,sans-serif
+                  ,serif
+                  ,emoji
+                  ,'STIX Two Math'
+                  ,'STIX Two Text'
+                  ,'FiraGo'
+                  ,'JetBrain Mono'
+                  ,'JetBrain Mono NL'
+                  ,'Fira Sans'
+                  ,'Libertinus Math'
+                  ,'Libertinus Mono'
+                  ,'Libertinus Sans'
+                  ,'Libertinus Serif Display'
+                  ,'Libertinus Serif'
+                  ,'KaTeX_Typewriter'
+                  ,'KaTeX_SansSerif'
+                  ,'KaTeX_Main'
+                  ,'KaTex_AMS'
+                  ,'Asana Math'
+                  ,'Asana'
+                  ;
+}
+
+html *{
+  font-size      : inherit;
+  font-family    : inherit;
+}
+
+
+[c]::before{
+  display        : inline-block;
+  width          : 40pt;
+  height         : 40pt;
+  margin         : 2pt;
+  overflow       : hidden;
+
+  text-align     : center;
+  vertical-align : middle;
+  letter-spacing : -.5pt;
+
+  cursor         : pointer;
+  
+  border-radius  : 5pt;
+  border-width   : 1pt;
+  border-style   : solid;
+}
+[c]::before{        color:black;  background-color:lightgray; border-color:gray;   }
+[c]:hover::before{  color:black;  background-color:darkgray;  border-color:yellow; }
+[c]:active::before{ color:yellow; background-color:gray;      border-color:yellow; }
+
+
+[c]::before{  content:attr(c); } /*this is the magic: content is CSS rendered (so, fast!), still- this line should be placed last to reduce page-hanging on older-browsers.*/
+
+
+
+
+/* ╔═══════════════╗
+   ║ speed tweaks. ║
+   ╚═══════════════╝  */
+
+
+/* --------------------------- normalize elements flow so only the root HTML-node handles scroll. it makes scrolling a page with a lot of nodes a lot more reactive and reduces scroll-lags.*/
+body{overflow: visible;}
+html{overflow: auto;
+   word-break: normal;
+overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+
+/* --------------------------- will disable double-click gesture to zoom content (pinch-gesture is still available). will reduce ~300ms in all clicks. */
+html{
+        touch-action       : manipulation;
+     -o-touch-action       : manipulation;
+    -ms-touch-action       : manipulation;
+   -moz-touch-action       : manipulation;
+-webkit-touch-action       : manipulation;
+}
+
+html *{
+        touch-action       : inherit;
+     -o-touch-action       : inherit;
+    -ms-touch-action       : inherit;
+   -moz-touch-action       : inherit;
+-webkit-touch-action       : inherit;
+}
+
+
+/* --------------------------- reduced-quality rendering. page requires less RAM. */
+html{
+        text-rendering     : optimizeSpeed;
+     -o-text-rendering     : optimizeSpeed;
+    -ms-text-rendering     : optimizeSpeed;
+   -moz-text-rendering     : optimizeSpeed;
+-webkit-text-rendering     : optimizeSpeed;
+        font-smooth        : never;
+     -o-font-smooth        : never;
+    -ms-font-smooth        : never;
+   -moz-font-smooth        : never;
+-webkit-font-smooth        : never;
+        font-smoothing     : none;
+     -o-font-smoothing     : none;
+    -ms-font-smoothing     : none;
+   -moz-font-smoothing     : none;
+-webkit-font-smoothing     : none;
+}
+
+html *{
+        text-rendering     : inherit;
+     -o-text-rendering     : inherit;
+    -ms-text-rendering     : inherit;
+   -moz-text-rendering     : inherit;
+-webkit-text-rendering     : inherit;
+        font-smooth        : inherit;
+     -o-font-smooth        : inherit;
+    -ms-font-smooth        : inherit;
+   -moz-font-smooth        : inherit;
+-webkit-font-smooth        : inherit;
+        font-smoothing     : inherit;
+     -o-font-smoothing     : inherit;
+    -ms-font-smoothing     : inherit;
+   -moz-font-smoothing     : inherit;
+-webkit-font-smoothing     : inherit;
+}
+
+/* --------------------------- no smooth scroll (standard)*/
+html{
+        scroll-behavior    : auto;
+     -o-scroll-behavior    : auto;
+    -ms-scroll-behavior    : auto;
+   -moz-scroll-behavior    : auto;
+-webkit-scroll-behavior    : auto;
+}
+
+html *{
+        scroll-behavior    : inherit;
+     -o-scroll-behavior    : inherit;
+    -ms-scroll-behavior    : inherit;
+   -moz-scroll-behavior    : inherit;
+-webkit-scroll-behavior    : inherit;
+}
+
+
+/* --------------------------- no smooth scroll (non-standard). disables specifically the momentum-functionality that continues scrolling after user-scroll-action ends. */
+html{
+        overflow-scrolling : auto;
+     -o-overflow-scrolling : auto;
+    -ms-overflow-scrolling : auto;
+   -moz-overflow-scrolling : auto;
+-webkit-overflow-scrolling : auto;
+}
+
+html *{
+        overflow-scrolling : inherit;
+     -o-overflow-scrolling : inherit;
+    -ms-overflow-scrolling : inherit;
+   -moz-overflow-scrolling : inherit;
+-webkit-overflow-scrolling : inherit;
+}
